@@ -1,4 +1,3 @@
-import { Domain } from "@/lib/mockData";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,21 +16,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+/**
+ * @param {Object} props
+ * @param {Array} props.domains
+ * @param {Function} props.onEdit
+ * @param {Function} props.onDelete
+ */
 export function DomainTable({ domains, onEdit, onDelete }) {
-  const getStatusVariant = () => {
-    switch (status) {
-      case "active":
-        return "default";
-      case "pending":
-        return "secondary";
-      case "inactive":
-        return "destructive";
-      default:
-        return "default";
-    }
-  };
-
-  const getStatusColor = () => {
+  const getStatusColor = (status) => {
     switch (status) {
       case "active":
         return "bg-success text-success-foreground";
@@ -68,9 +60,19 @@ export function DomainTable({ domains, onEdit, onDelete }) {
               <TableCell>{domain.expiryDate}</TableCell>
               <TableCell>
                 {domain.verified ? (
-                  <Badge variant="outline" className="bg-success/10 text-success border-success/20">Verified</Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-success/10 text-success border-success/20"
+                  >
+                    Verified
+                  </Badge>
                 ) : (
-                  <Badge variant="outline" className="bg-warning/10 text-warning border-warning/20">Pending</Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-warning/10 text-warning border-warning/20"
+                  >
+                    Pending
+                  </Badge>
                 )}
               </TableCell>
               <TableCell className="text-right">
