@@ -2,6 +2,12 @@ import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // Mock data notifikasi
 const mockNotifications = [
@@ -30,7 +36,6 @@ const mockNotifications = [
 
 export function DashboardTopbar() {
   const [notifications, setNotifications] = useState(mockNotifications);
-
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
@@ -39,15 +44,31 @@ export function DashboardTopbar() {
       <div className="flex flex-1 items-center justify-between">
         <h1 className="text-lg font-semibold text-foreground">Kerjamail Dashboard</h1>
 
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-5 w-5" />
-          {unreadCount > 0 && (
-            <span className="absolute right-1 top-1 flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-destructive"></span>
-            </span>
-          )}
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5" />
+              {unreadCount > 0 && (
+                <span className="absolute right-1 top-1 flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-destructive"></span>
+                </span>
+              )}
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent className="w-64 bg-card p-2">
+            {notifications.map((notif) => (
+              <DropdownMenuItem key={notif.id} className="flex flex-col p-2">
+                <span className="text-sm font-medium text-foreground">{notif.message}</span>
+                <span className="text-xs text-muted-foreground">{notif.time}</span>
+              </DropdownMenuItem>
+            ))}
+            {notifications.length === 0 && (
+              <DropdownMenuItem className="text-sm text-muted-foreground">Tidak ada notifikasi</DropdownMenuItem>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
