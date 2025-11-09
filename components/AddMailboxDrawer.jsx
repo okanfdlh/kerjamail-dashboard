@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,12 +22,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 
-export function AddMailboxDrawer({
-  open,
-  onOpenChange,
-  onAdd,
-  domains,
-}) {
+export function AddMailboxDrawer({ open, onOpenChange, onAdd, domains }) {
   const [username, setUsername] = useState("");
   const [domain, setDomain] = useState("");
   const [quota, setQuota] = useState("5");
@@ -33,7 +30,7 @@ export function AddMailboxDrawer({
 
   const handleSave = () => {
     if (!username || !domain || !password) {
-      toast.error("Please fill in all required fields");
+      toast.error("Silakan isi semua bidang yang wajib diisi");
       return;
     }
 
@@ -50,21 +47,21 @@ export function AddMailboxDrawer({
     setQuota("5");
     setPassword("");
     onOpenChange(false);
-    toast.success("Mailbox created successfully!");
+    toast.success("Mailbox berhasil dibuat!");
   };
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent>
+      <DrawerContent side="right">
         <div className="mx-auto w-full max-w-lg">
           <DrawerHeader>
-            <DrawerTitle>Add New Mailbox</DrawerTitle>
-            <DrawerDescription>Create a new email mailbox</DrawerDescription>
+            <DrawerTitle>Tambah Mailbox Baru</DrawerTitle>
+            <DrawerDescription>Buat akun email baru</DrawerDescription>
           </DrawerHeader>
 
           <div className="p-4 space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="username">Nama Pengguna</Label>
               <Input
                 id="username"
                 placeholder="admin"
@@ -77,7 +74,7 @@ export function AddMailboxDrawer({
               <Label htmlFor="domain">Domain</Label>
               <Select value={domain} onValueChange={setDomain}>
                 <SelectTrigger id="domain">
-                  <SelectValue placeholder="Select domain" />
+                  <SelectValue placeholder="Pilih domain" />
                 </SelectTrigger>
                 <SelectContent>
                   {domains.map((d) => (
@@ -90,7 +87,7 @@ export function AddMailboxDrawer({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="quota">Quota (GB)</Label>
+              <Label htmlFor="quota">Kuota (GB)</Label>
               <Select value={quota} onValueChange={setQuota}>
                 <SelectTrigger id="quota">
                   <SelectValue />
@@ -105,11 +102,11 @@ export function AddMailboxDrawer({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Kata Sandi</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter password"
+                placeholder="Masukkan kata sandi"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -117,9 +114,9 @@ export function AddMailboxDrawer({
           </div>
 
           <DrawerFooter>
-            <Button onClick={handleSave}>Create Mailbox</Button>
+            <Button onClick={handleSave}>Buat Mailbox</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Batal</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

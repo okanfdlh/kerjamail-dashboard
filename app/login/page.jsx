@@ -24,13 +24,13 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (!email || !password) {
-      toast.error("Please fill in all fields");
+      toast.error("Harap isi semua bidang");
       return;
     }
 
     // Simulasi login sederhana
     if (email && password) {
-      toast.success("Login successful!");
+      toast.success("Login berhasil!");
       // Redirect ke dashboard setelah login sukses
       router.push("/dashboard");
     }
@@ -44,10 +44,10 @@ export default function LoginPage() {
             <Mail className="h-6 w-6 text-primary-foreground" />
           </div>
           <CardTitle className="text-2xl font-bold">
-            Welcome to Kerjamail
+            Selamat Datang di Kerjamail
           </CardTitle>
           <CardDescription>
-            Enter your credentials to access your dashboard
+            Masukkan email dan kata sandi Anda untuk mengakses dashboard
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,17 +63,17 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Kata Sandi</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Masukkan kata sandi Anda"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <Button type="submit" className="w-full">
-              Login
+              Masuk
             </Button>
           </form>
         </CardContent>

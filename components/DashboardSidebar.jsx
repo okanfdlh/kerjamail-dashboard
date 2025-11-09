@@ -4,9 +4,9 @@ import { Sidebar } from "@/components/ui/sidebar"; // cuma Sidebar yang ada
 
 const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Domain Management", url: "/dashboard/domains", icon: Building2 },
-  { title: "Mailbox Management", url: "/dashboard/mailboxes", icon: Mail },
-  { title: "Features", url: "/dashboard/features", icon: Zap },
+  { title: "Manajemen Domain", url: "/dashboard/domains", icon: Building2 },
+  { title: "Manajemen Email", url: "/dashboard/mailboxes", icon: Mail },
+  { title: "Fitur", url: "/dashboard/features", icon: Zap },
   { title: "Billing", url: "/dashboard/billing", icon: CreditCard },
 ];
 

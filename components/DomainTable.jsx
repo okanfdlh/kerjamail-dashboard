@@ -41,11 +41,11 @@ export function DomainTable({ domains, onEdit, onDelete }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Domain Name</TableHead>
+            <TableHead>Nama Domain</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Expiry Date</TableHead>
-            <TableHead>Verified</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>Tanggal Kadaluarsa</TableHead>
+            <TableHead>Verifikasi</TableHead>
+            <TableHead className="text-right">Aksi</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

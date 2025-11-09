@@ -33,15 +33,15 @@ const Mailboxes = () => {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-foreground">
-            Mailbox Management
+            Manajemen Email
           </h2>
           <p className="text-muted-foreground">
-            Create and manage email accounts
+            Buat dan manajemen akun email
           </p>
         </div>
         <Button onClick={() => setDrawerOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
-          Add Mailbox
+          Buat Akun Email
         </Button>
       </div>
 
@@ -49,6 +49,7 @@ const Mailboxes = () => {
 
       <AddMailboxDrawer
         open={drawerOpen}
+        side="right"
         onOpenChange={setDrawerOpen}
         onAdd={handleAddMailbox}
         domains={domains}

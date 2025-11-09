@@ -1,45 +1,56 @@
+"use client";
+
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Mail, Zap, TrendingUp } from "lucide-react";
+import { AddDomainDrawer } from "@/components/AddDomainDrawer";
+import { AddMailboxDrawer } from "@/components/AddMailboxDrawer";
+import { mockDomains } from "@/lib/mockData";
+import { Button } from "@/components/ui/button";
 
 const Dashboard = () => {
+  const [drawerDomainOpen, setDrawerDomainOpen] = useState(false);
+  const [drawerMailboxOpen, setDrawerMailboxOpen] = useState(false);
+
   const stats = [
     {
-      title: "Total Domains",
+      title: "Total Domain",
       value: "12",
-      description: "Active domains",
+      description: "Domain aktif",
       icon: Building2,
-      trend: "+2 this month",
+      trend: "+2 bulan ini",
     },
     {
-      title: "Mailboxes",
+      title: "Mailbox",
       value: "48",
-      description: "Active mailboxes",
+      description: "Mailbox aktif",
       icon: Mail,
-      trend: "+5 this week",
+      trend: "+5 minggu ini",
     },
     {
-      title: "Active Features",
+      title: "Fitur Aktif",
       value: "24",
-      description: "Aliases & forwarding",
+      description: "Alias & penerusan",
       icon: Zap,
-      trend: "3 new aliases",
+      trend: "3 alias baru",
     },
     {
-      title: "Storage Used",
+      title: "Penyimpanan Terpakai",
       value: "156 GB",
-      description: "Of 500 GB total",
+      description: "Dari total 500 GB",
       icon: TrendingUp,
-      trend: "31% used",
+      trend: "31% terpakai",
     },
   ];
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground">Dashboard Overview</h2>
-        <p className="text-muted-foreground">Welcome back! Here's what's happening with your email service.</p>
+        <h2 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h2>
+        <p className="text-muted-foreground">Selamat datang kembali! Berikut kondisi layanan email Anda saat ini.</p>
       </div>
 
+      {/* Statistik */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.title}>
@@ -56,11 +67,12 @@ const Dashboard = () => {
         ))}
       </div>
 
+      {/* Aktivitas Terbaru dan Aksi Cepat */}
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Your latest domain and mailbox changes</CardDescription>
+            <CardTitle>Aktivitas Terbaru</CardTitle>
+            <CardDescription>Perubahan domain dan mailbox terbaru Anda</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -69,8 +81,8 @@ const Dashboard = () => {
                   <Building2 className="h-4 w-4 text-success" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Domain verified</p>
-                  <p className="text-xs text-muted-foreground">example.com - 2 hours ago</p>
+                  <p className="text-sm font-medium">Domain diverifikasi</p>
+                  <p className="text-xs text-muted-foreground">example.com - 2 jam lalu</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -78,8 +90,8 @@ const Dashboard = () => {
                   <Mail className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">New mailbox created</p>
-                  <p className="text-xs text-muted-foreground">support@example.com - 5 hours ago</p>
+                  <p className="text-sm font-medium">Mailbox baru dibuat</p>
+                  <p className="text-xs text-muted-foreground">support@example.com - 5 jam lalu</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -87,37 +99,64 @@ const Dashboard = () => {
                   <Zap className="h-4 w-4 text-warning" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Alias configured</p>
-                  <p className="text-xs text-muted-foreground">contact@example.com - 1 day ago</p>
+                  <p className="text-sm font-medium">Alias dikonfigurasi</p>
+                  <p className="text-xs text-muted-foreground">contact@example.com - 1 hari lalu</p>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
+        {/* Quick Actions */}
         <Card>
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Common tasks and shortcuts</CardDescription>
+            <CardTitle>Aksi Cepat</CardTitle>
+            <CardDescription>Tugas umum dan pintasan</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <button className="w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-accent">
-                <p className="font-medium text-sm">Add New Domain</p>
-                <p className="text-xs text-muted-foreground">Register a new domain for email</p>
+              <button
+                className="w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-accent"
+                onClick={() => setDrawerDomainOpen(true)}
+              >
+                <p className="font-medium text-sm">Tambah Domain Baru</p>
+                <p className="text-xs text-muted-foreground">Daftarkan domain baru untuk email</p>
               </button>
-              <button className="w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-accent">
-                <p className="font-medium text-sm">Create Mailbox</p>
-                <p className="text-xs text-muted-foreground">Add a new email account</p>
+
+              <button
+                className="w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-accent"
+                onClick={() => setDrawerMailboxOpen(true)}
+              >
+                <p className="font-medium text-sm">Buat Mailbox</p>
+                <p className="text-xs text-muted-foreground">Tambahkan akun email baru</p>
               </button>
-              <button className="w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-accent">
-                <p className="font-medium text-sm">Configure Forwarding</p>
-                <p className="text-xs text-muted-foreground">Set up email forwarding rules</p>
+
+              <button
+                className="w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-accent"
+                onClick={() => window.location.href = "/dashboard/features"}
+              >
+                <p className="font-medium text-sm">Konfigurasi Penerusan</p>
+                <p className="text-xs text-muted-foreground">Atur aturan penerusan email</p>
               </button>
             </div>
           </CardContent>
         </Card>
       </div>
+
+      {/* Drawer Domain */}
+      <AddDomainDrawer
+        open={drawerDomainOpen}
+        onOpenChange={setDrawerDomainOpen}
+        onAdd={(newDomain) => console.log("Domain ditambahkan:", newDomain)}
+      />
+
+      {/* Drawer Mailbox */}
+      <AddMailboxDrawer
+        open={drawerMailboxOpen}
+        onOpenChange={setDrawerMailboxOpen}
+        onAdd={(newMailbox) => console.log("Mailbox ditambahkan:", newMailbox)}
+        domains={mockDomains.map(d => d.name)}
+      />
     </div>
   );
 };

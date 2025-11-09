@@ -27,9 +27,9 @@ export function MailboxTable({ mailboxes, onEdit, onDelete }) {
             <TableHead>Email</TableHead>
             <TableHead>Domain</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Quota</TableHead>
-            <TableHead>Used</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>Kapasitas</TableHead>
+            <TableHead>Digunakan</TableHead>
+            <TableHead className="text-right">Aksi</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

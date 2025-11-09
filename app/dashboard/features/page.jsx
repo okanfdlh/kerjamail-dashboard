@@ -71,22 +71,22 @@ const Features = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground">Features</h2>
-        <p className="text-muted-foreground">Configure email aliases, forwarding, and autoresponders</p>
+        <h2 className="text-3xl font-bold tracking-tight text-foreground">Fitur</h2>
+        <p className="text-muted-foreground">Konfigurasi alias email, penerusan email, dan autoresponder otomatis</p>
       </div>
 
       <Tabs defaultValue="alias" className="w-full">
         <TabsList className="grid w-full max-w-md grid-cols-3">
-          <TabsTrigger value="alias">Alias</TabsTrigger>
-          <TabsTrigger value="forwarding">Forwarding</TabsTrigger>
+          <TabsTrigger value="alias">Alias Email</TabsTrigger>
+          <TabsTrigger value="forwarding">Penerusan Email</TabsTrigger>
           <TabsTrigger value="autoresponder">Autoresponder</TabsTrigger>
         </TabsList>
 
         <TabsContent value="alias" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Email Aliases</CardTitle>
-              <CardDescription>Create email aliases that forward to existing mailboxes</CardDescription>
+              <CardTitle>Alias Email</CardTitle>
+              <CardDescription>Buat alias email yang meneruskan ke kotak email yang ada</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
@@ -100,7 +100,7 @@ const Features = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="alias-destination">Forward To</Label>
+                  <Label htmlFor="alias-destination">Email Tujuan</Label>
                   <Input
                     id="alias-destination"
                     placeholder="admin@example.com"
@@ -109,7 +109,7 @@ const Features = () => {
                   />
                 </div>
               </div>
-              <Button onClick={handleAddAlias}>Add Alias</Button>
+              <Button onClick={handleAddAlias}>Buat Alias</Button>
 
               <div className="mt-6 space-y-2">
                 {aliases.map((alias) => (
@@ -140,13 +140,13 @@ const Features = () => {
         <TabsContent value="forwarding" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Email Forwarding</CardTitle>
-              <CardDescription>Set up automatic email forwarding rules</CardDescription>
+              <CardTitle>Penerusan Email</CardTitle>
+              <CardDescription>Atur aturan penerusan email otomatis</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="forward-source">From Email</Label>
+                  <Label htmlFor="forward-source">Email Asal</Label>
                   <Input
                     id="forward-source"
                     placeholder="sales@example.com"
@@ -155,7 +155,7 @@ const Features = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="forward-destination">Forward To</Label>
+                  <Label htmlFor="forward-destination">Email Tujuan</Label>
                   <Input
                     id="forward-destination"
                     placeholder="team@example.com"
@@ -164,7 +164,7 @@ const Features = () => {
                   />
                 </div>
               </div>
-              <Button onClick={handleAddForwarding}>Add Forwarding Rule</Button>
+              <Button onClick={handleAddForwarding}>Atur Penerusan</Button>
 
               <div className="mt-6 space-y-2">
                 {forwardings.map((forward) => (
@@ -197,11 +197,11 @@ const Features = () => {
           <Card>
             <CardHeader>
               <CardTitle>Autoresponder</CardTitle>
-              <CardDescription>Configure automatic email responses</CardDescription>
+              <CardDescription>Atur respon otomatis email</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="autoresponder-email">Email Address</Label>
+                <Label htmlFor="autoresponder-email">Alamat Email</Label>
                 <Input
                   id="autoresponder-email"
                   placeholder="info@example.com"
@@ -210,16 +210,16 @@ const Features = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="autoresponder-message">Auto-reply Message</Label>
+                <Label htmlFor="autoresponder-message">Pesan Otomatis</Label>
                 <textarea
                   id="autoresponder-message"
                   className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  placeholder="Thank you for your email. We will get back to you soon."
+                  placeholder="Terima kasih sudah mengirim email. Kami akan segera mengembalikan respon."
                   value={autoresponderMessage}
                   onChange={(e) => setAutoresponderMessage(e.target.value)}
                 />
               </div>
-              <Button onClick={handleAddAutoresponder}>Configure Autoresponder</Button>
+              <Button onClick={handleAddAutoresponder}>Atur Respon Otomatis</Button>
 
               <div className="mt-6 space-y-2">
                 {autoresponders.map((auto) => (

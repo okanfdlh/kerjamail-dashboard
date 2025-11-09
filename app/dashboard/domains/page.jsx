@@ -30,25 +30,29 @@ const Domains = () => {
 
   return (
     <div className="space-y-6">
+      {/* Header halaman */}
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-foreground">
-            Domain Management
+            Manajemen Domain
           </h2>
           <p className="text-muted-foreground">
-            Manage your email domains and DNS settings
+            Kelola domain email dan pengaturan DNS Anda
           </p>
         </div>
         <Button onClick={() => setDrawerOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
-          Add Domain
+          Tambah Domain
         </Button>
       </div>
 
+      {/* Tabel domain */}
       <DomainTable domains={domains} onDelete={handleDeleteDomain} />
 
+      {/* Drawer untuk menambahkan domain */}
       <AddDomainDrawer
         open={drawerOpen}
+        side="right"
         onOpenChange={setDrawerOpen}
         onAdd={handleAddDomain}
       />
